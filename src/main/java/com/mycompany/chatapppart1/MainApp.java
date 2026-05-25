@@ -15,12 +15,21 @@ import java.util.Scanner;
 
 
 
+
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
 @SuppressWarnings("empty-statement")
+
 public class MainApp {
 
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
+
+        // Store messages
+        ArrayList<Message> messages = new ArrayList<>();
 
         // ================= USER DETAILS =================
         System.out.print("Enter first name: ");
@@ -97,5 +106,114 @@ public class MainApp {
                 break;
             }
         }
+
+        // ================= PART 2 MENU =================
+        boolean running = true;
+
+        while (running) {
+
+            System.out.println("\n===== MENU =====");
+            System.out.println("1) Send Messages");
+            System.out.println("2) Show sent messages");
+            System.out.println("3) Quit");
+
+            System.out.print("Choose an option: ");
+
+            int choice = input.nextInt();
+            input.nextLine(); // clear buffer
+
+            switch (choice) {
+
+                case 1:
+
+                    System.out.print("How many messages do you want to send? ");
+                    int count = input.nextInt();
+                    input.nextLine();
+
+                    for (int i = 0; i < count; i++) {
+
+                        System.out.println("\nMessage " + (i + 1));
+
+                        System.out.print("Enter recipient (+27...): ");
+                        String recipient = input.nextLine();
+
+                        System.out.print("Enter message: ");
+                        String text = input.nextLine();
+
+                        Message msg = new Message(
+                                i + 1,
+                                recipient,
+                                text
+                        );
+
+                        // Validate recipient
+                        System.out.println(
+                                msg.checkRecipientCell()
+                        );
+
+                        // Validate message length
+                        System.out.println(
+                                msg.checkMessageLength()
+                        );
+
+                        // Print message details
+                        System.out.println(
+                                msg.printMessages()
+                        );
+
+                        // Add to ArrayList
+                        messages.add(msg);
+
+                        // Send/store/disregard
+                        System.out.println(
+                                msg.sentMessage()
+                        );
+                    }
+
+                    break;
+
+                case 2:
+
+                    if (messages.isEmpty()) {
+
+                        System.out.println(
+                                "No messages sent yet."
+                        );
+
+                    } else {
+
+                        System.out.println(
+                                "\n=== SENT MESSAGES ==="
+                        );
+
+                        for (Message m : messages) {
+
+                            System.out.println(
+                                    m.printMessages()
+                            );
+                        }
+                    }
+
+                    break;
+
+                case 3:
+
+                    System.out.println(
+                            "Application closing..."
+                    );
+
+                    running = false;
+
+                    break;
+
+                default:
+
+                    System.out.println(
+                            "Please enter option 1, 2 or 3."
+                    );
+            }
+        }
+
+        input.close();
     }
 }
