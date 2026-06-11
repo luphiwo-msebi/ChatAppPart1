@@ -12,9 +12,6 @@ package com.mycompany.chatapppart1;
    
 
 
-
-
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
