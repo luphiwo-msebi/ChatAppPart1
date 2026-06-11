@@ -82,4 +82,50 @@ public class MessageTest {
         
         assertTrue(hash.contains(":0:HITONIGHT"));
     }
+
+
+    @Test
+    public void testDisplayLongestMessage(){
+        
+        Message.addStoredMessage(
+        "Where are you? You are late! I have asked you to be on time.",
+                Message.displayLongestMessage()
+                        );            
+    }
+
+    @Test
+    public void testSearchByRecipient(){
+        
+        Message msg = new Message(
+                1,
+                "+27838884567",
+                "Ok, I am leaving without you."
+        );
+
+        Message.storeMessage(msg);
+
+        String result =
+                Message.searchByRecipient("+27838884567");
+        
+        System.out.println("Search Result: " + result);
+
+        assertTrue(
+                result.contains("Ok, I am leaving without you.")
+        );
+    }
+    
+    @Test
+    public void testDeleteByHash(){
+        
+        String result =
+                Message.deleteByHash("00:1:HITONIGHT");
+        
+        asserTrue(
+        result.contains("successfully deleted")
+        );
+    }
+
+    private void asserTrue(boolean contains) {
+    }
 }
+

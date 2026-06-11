@@ -11,8 +11,6 @@ package com.mycompany.chatapppart1;
  */
    
 
-import java.util.Scanner;
-
 
 
 
@@ -90,6 +88,8 @@ public class MainApp {
 
         // ================= LOGIN =================
         System.out.println("\n--- LOGIN ---");
+        
+        Message.loadStoredMessages();
 
         while (true) {
 
@@ -116,6 +116,7 @@ public class MainApp {
             System.out.println("1) Send Messages");
             System.out.println("2) Show sent messages");
             System.out.println("3) Quit");
+            System.out.println("4) Stored Messages"); // <-- add this line
 
             System.out.print("Choose an option: ");
 
@@ -158,7 +159,7 @@ public class MainApp {
 
                         // Print message details
                         System.out.println(
-                                msg.printMessages()
+                                msg.printMessageDetails()
                         );
 
                         // Add to ArrayList
@@ -205,15 +206,23 @@ public class MainApp {
                     running = false;
 
                     break;
+            
+            
+                    
+               case 4:
 
-                default:
+            Message.storedMessageMenu();
+            break;
 
-                    System.out.println(
-                            "Please enter option 1, 2 or 3."
-                    );
+        default:
+
+            System.out.println(
+                    "Please enter option 1, 2, 3 or 4."
+            );
             }
         }
-
-        input.close();
+        }
+        
     }
-}
+
+    
