@@ -27,7 +27,7 @@ public class MessageTest {
                 "Hi Mike, can you join us for dinner tonight?"
         );
         
-        assertEquals(
+        assertEquals (
                 
                 "Message ready to send.",
                 msg.checkMessageLength()

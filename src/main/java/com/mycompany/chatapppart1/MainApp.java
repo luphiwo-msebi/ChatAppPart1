@@ -121,7 +121,7 @@ public class MainApp {
             System.out.print("Choose an option: ");
 
             int choice = input.nextInt();
-            input.nextLine(); // clear buffer
+            input.nextLine (); // clear buffer
 
             switch (choice) {
 
